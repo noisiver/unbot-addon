@@ -22,6 +22,22 @@ if GetLocale() == "enUS" then
     L["You click button index "]                            = "You click button index ";
     L[", execute "]                                         = ", execute ";
 
+    -----------------------------------------------------------------------------------------------
+    --- Bindings.lua ---
+    -----------------------------------------------------------------------------------------------
+
+    L["Un Bot Command ActionButton 1"] = "Un Bot Command ActionButton 1";
+    L["Un Bot Command ActionButton 2"] = "Un Bot Command ActionButton 2";
+    L["Un Bot Command ActionButton 3"] = "Un Bot Command ActionButton 3";
+    L["Un Bot Command ActionButton 4"] = "Un Bot Command ActionButton 4";
+    L["Un Bot Command ActionButton 5"] = "Un Bot Command ActionButton 5";
+    L["Un Bot Command ActionButton 6"] = "Un Bot Command ActionButton 6";
+    L["Un Bot Command ActionButton 7"] = "Un Bot Command ActionButton 7";
+    L["Un Bot Command ActionButton 8"] = "Un Bot Command ActionButton 8";
+    L["Un Bot Command ActionButton 9"] = "Un Bot Command ActionButton 9";
+    L["Un Bot Command ActionButton 10"] = "Un Bot Command ActionButton 10";
+    L["Un Bot Close Frame ActionButton"] = "Un Bot Close Frame ActionButton";
+
     
     -----------------------------------------------------------------------------------------------
     --- UnBotBags.lua ---
@@ -85,5 +101,7 @@ if GetLocale() == "enUS" then
     -- RecvMuchSpellToBags
     L["Recv spell id "] = "Recv spell id ";
     L[" error."] = " error.";
+
+
 
 end
