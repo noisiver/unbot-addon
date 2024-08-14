@@ -19,8 +19,8 @@ function UnBotCanFlushInfo(bagsFrame)
 	end
 end
 
-function UnBotBagsHeadFrameSetFontText(rece, name, info)
-	local text = "|cff0000cc"..rece.."|r |cff00cccc"..name.."|r - |cffcccccc"..info.."|r";
+function UnBotBagsHeadFrameSetFontText(race, name, info)
+	local text = "|cff0000cc"..race.."|r |cff00cccc"..name.."|r - |cffcccccc"..info.."|r";
 	return text;
 end
 
