@@ -5,6 +5,8 @@
 
 local _, L = ...;
 
+-- TODO: remove locale translation here as it can be done through translation files now
+
 if (GetLocale() == "zhCN") then
 	BINDING_HEADER_UnBotFrame = "|cff0000ff机器人控制动作条|r";
 	_G["BINDING_NAME_CLICK UnBotCommandButton1:LeftButton"] = "机器人命令快捷键1";
