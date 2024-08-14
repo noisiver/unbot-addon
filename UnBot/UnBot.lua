@@ -1,5 +1,4 @@
 local _, L = ...;
-print(L["Hello World!"]);
 
 function UnBotSplit(str, split_char)
     local sub_str_tab = {};
