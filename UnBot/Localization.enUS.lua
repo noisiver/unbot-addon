@@ -38,6 +38,21 @@ if GetLocale() == "enUS" then
     L["Un Bot Command ActionButton 10"] = "Un Bot Command ActionButton 10";
     L["Un Bot Close Frame ActionButton"] = "Un Bot Close Frame ActionButton";
 
+    -----------------------------------------------------------------------------------------------
+    --- EquipInventory.xml ---
+    -----------------------------------------------------------------------------------------------
+
+    L["Left mouse button： Make "] = "Left mouse button： Make ";
+    L[" equip this item."] = " equip this item.";
+    L["e "] = "e ";
+    
+    -----------------------------------------------------------------------------------------------
+    --- ExecuteCommand.lua ---
+    -----------------------------------------------------------------------------------------------
+
+    L["InspectFrame_Show "] = "InspectFrame_Show ";
+    L[", Name "] = ", Name ";
+    
     
     -----------------------------------------------------------------------------------------------
     --- UnBotBags.lua ---
@@ -101,7 +116,5 @@ if GetLocale() == "enUS" then
     -- RecvMuchSpellToBags
     L["Recv spell id "] = "Recv spell id ";
     L[" error."] = " error.";
-
-
 
 end
