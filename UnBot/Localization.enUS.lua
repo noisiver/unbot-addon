@@ -96,7 +96,21 @@ if GetLocale() == "enUS" then
 
     -- UnBotShowOnlineFrame
     L["Failed to open the Online window."] = "Failed to open the Online window.";
-    
+
+    -----------------------------------------------------------------------------------------------
+    --- QueryReward.lua ---
+    -----------------------------------------------------------------------------------------------
+
+    -- ShowQuestReward
+    L["Select reward for completing quests"] = "Select reward for completing quests";
+    L["Complete quest reward panelLabel "] = "Complete quest reward panelLabel ";
+    L["TitleLabel Not found, failed to set player name "] = "TitleLabel Not found, failed to set player name ";
+
+    -- UnBotShowQuestRewardTips
+    L["ITEM_NOT_ON_CLIENT_REFRESH"] = "This item has not appeared on your client. You need to wait for a moment to query the server and then move the mouse to this item again.";
+    L["Left mouse button: Select "] = "Left mouse button: Select ";
+    L[" as the quest reward"] = " as the quest reward";
+
 
     -----------------------------------------------------------------------------------------------
     --- UnBotBags.lua ---
