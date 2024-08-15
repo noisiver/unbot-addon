@@ -22,7 +22,7 @@ if GetLocale() == "enUS" then
     --- EquipInventory.xml ---
     -----------------------------------------------------------------------------------------------
 
-    L["Left mouse button： Make "] = "Left mouse button： Make ";
+    L["Left mouse button: Make "] = "Left mouse button: Make ";
     L[" equip this item."] = " equip this item.";
     L["e "] = "e ";
     
@@ -330,8 +330,8 @@ if GetLocale() == "enUS" then
     L["TooltipHelp6"] = "Select the bot and let it add all remaining talent points to its talents on the first type page. If the bot switches talents, you need to execute reset ai again to make the bot work in the new talent (Command No. 9 or 10 reset ai)."; -- Needs correction
     L["TooltipHelp7"] = "Select the bot and let it add all remaining talent points to its talents on the second type page. If the bot switches talents, you need to execute reset ai again to make the bot work in the new talent (Command No. 9 or 10 reset ai)."; -- Needs correction
     L["TooltipHelp8"] = "Select the bot and let it add all remaining talent points to the talent on its third type page. If the bot switches talents, you need to execute reset ai again to make the bot work in the new talent (Command No. 9 or 10 reset ai)."; -- Needs correction
-    L["TooltipHelp9"] = "Reset the AI ​​strategy of all bots in the team. After a bot switches talents, it is usually necessary to execute this command so that the bots can start fighting with new talents."; -- Needs correction
-    L["TooltipHelp10"] = "Reset the AI ​​strategy of the selected bot. After the bot switches talents, you usually need to execute this command to let the bot start fighting with the new talents."; -- Needs correction
+    L["TooltipHelp9"] = "Reset the AI strategy of all bots in the team. After a bot switches talents, it is usually necessary to execute this command so that the bots can start fighting with new talents."; -- Needs correction
+    L["TooltipHelp10"] = "Reset the AI strategy of the selected bot. After the bot switches talents, you usually need to execute this command to let the bot start fighting with the new talents."; -- Needs correction
     L["TooltipHelp11"] = "Checks the equipment of the targeted bot.";
     L["TooltipHelp12"] = "Initialize the target bot to your own level, and reset its skills and equipment to this level. If you want to reset it to another level, you need to manually enter the command, and finally add the level number."; -- Needs correction
     L["TooltipHelp13"] = "Teleports all bots in your group to you.";
@@ -411,7 +411,7 @@ if GetLocale() == "enUS" then
     L["TooltipHelp87"] = "Makes the targeted bot go online.";
     L["TooltipHelp88"] = "Adds all bots in your group to your friends list.";
     L["TooltipHelp89"] = "Make all bots automatically attack nearby creatures that yield experience points.";
-    
+
     -----------------------------------------------------------------------------------------------
     --- UnBot.lua ---
     -----------------------------------------------------------------------------------------------
@@ -449,7 +449,7 @@ if GetLocale() == "enUS" then
 
     -- UnBotBags.lua -> UnBotShowButtonTips
     L["item:"] = "item:";
-    L["Quantity owned："] = "Quantity owned：";
+    L["Quantity owned "] = "Quantity owned ";
 
     L[" yards"] = " yards";
     L["Instant"] = "Instant";
