@@ -1,4 +1,5 @@
-﻿
+﻿local _, L = ...;
+
 local function GetClassFlag(className)
 	if (className == "warrior") then
 		return 1;
@@ -225,18 +226,18 @@ function StrategyOption_OnEnter(btn, name, use, strategyType, data)
 	GameTooltip:SetOwner(btn, "ANCHOR_TOPRIGHT");
 	GameTooltip:AddLine(data[2],1,1,1,1);
 	if (use) then
-		GameTooltip:AddLine("Active",0,0,1,1);
+		GameTooltip:AddLine(L["Active"],0,0,1,1);
 	else
-		GameTooltip:AddLine("Inactive",1,0,0,1);
+		GameTooltip:AddLine(L["Inactive"],1,0,0,1);
 	end
 	GameTooltip:AddLine(data[3],0,1,0,1);
-	GameTooltip:AddLine("Some strategies are ineffective for certain classes and some are mutually exclusive.",1,0.5,0,1);
+	GameTooltip:AddLine(L["Some strategies are ineffective for certain classes and some are mutually exclusive."],1,0.5,0,1);
 	GameTooltip:AddLine(" ",1,1,1,1);
-	GameTooltip:AddDoubleLine("Uses:",data[1],0,0.85,0.85,0,0.85,0.85);
+	GameTooltip:AddDoubleLine(L["Uses:"],data[1],0,0.85,0.85,0,0.85,0.85);
 	if (use) then
-		GameTooltip:AddLine("LMB: Deactivate",0.65,0.55,0,1);
+		GameTooltip:AddLine(L["LMB: Deactivate"],0.65,0.55,0,1);
 	else
-		GameTooltip:AddLine("LMB: Activate",0.65,0.55,0,1);
+		GameTooltip:AddLine(L["LMB: Activate"],0.65,0.55,0,1);
 	end
 	GameTooltip:Show();
 end
