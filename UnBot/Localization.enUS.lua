@@ -80,6 +80,15 @@ if GetLocale() == "enUS" then
     -- UnBotInspectPaperDollFrame_OnShow
     L["In the equipment slot: Left mouse button to change the equipment and right mouse button to remove the equipment."] = "In the equipment slot: Left mouse button to change the equipment and right mouse button to remove the equipment.";
 
+    -----------------------------------------------------------------------------------------------
+    --- NPCFrame.lua ---
+    -----------------------------------------------------------------------------------------------
+
+    -- NPCCommand_OnEnter
+    L["Creates a "] = "Creates a ";
+    L[" bot."] = " bot.";
+    L["Before using the command, you need to target yourself or a bot."] = "Before using the command, you need to target yourself or a bot.";
+    L["Uses:"] = "Uses:";
 
     -----------------------------------------------------------------------------------------------
     --- UnBotBags.lua ---
