@@ -70,7 +70,15 @@ if GetLocale() == "enUS" then
     -- CommandUnBotItemList
     L["View items"] = "View items";
     
-    
+    -----------------------------------------------------------------------------------------------
+    --- ImplantInspectFrame.lua ---
+    -----------------------------------------------------------------------------------------------
+
+    -- UnBotInitInspectFrame
+    L["Embedded the module into the character window"] = "Embedded the module into the character window";
+
+    -- UnBotInspectPaperDollFrame_OnShow
+    L["In the equipment slot: Left mouse button to change the equipment and right mouse button to remove the equipment."] = "In the equipment slot: Left mouse button to change the equipment and right mouse button to remove the equipment.";
 
 
     -----------------------------------------------------------------------------------------------
