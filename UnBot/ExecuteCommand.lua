@@ -1,4 +1,5 @@
-﻿
+﻿local _, L = ...;
+
 function CommandUnBotSetting(index)
 	UnBotHideAllSubFrame();
 	UnBotCloseAllBagsFrame();
@@ -6,7 +7,7 @@ function CommandUnBotSetting(index)
 	NPCFrame:Hide();
 	
 	if (InspectFrame and InspectFrame:IsShown()) then
-		DisplayInfomation("InspectFrame_Show "..UnitName(InspectFrame.unit)..", Name "..InspectFrame:GetName());
+		DisplayInfomation(L["InspectFrame_Show "]..UnitName(InspectFrame.unit)..L[", Name "]..InspectFrame:GetName());
 	end
 end
 
@@ -32,15 +33,15 @@ function CommandShowStrategyFrame(index)
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
 	if (targetName == nil or targetName == "") then
-		DisplayInfomation("You have no target.");
+		DisplayInfomation(L["NO_TARGET"]);
 		return;
 	end
 	if (not UnitIsPlayer("target")) then
-		DisplayInfomation("A bot needs to be targetted.");
+		DisplayInfomation(L["NEED_BOT_TARGET"]);
 		return;
 	end
 	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation("The target is not in your group.");
+		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
 		return;
 	end
 	-- if (not IsRealPartyLeader()) then
@@ -57,11 +58,11 @@ function CommandFriendsOnline(index)
 		for x=1,num,1 do
 			local name,level,className,un2,online,un4 = GetFriendInfo(x);
 			if (name ~= nil) then
-				SendChatMessage(".playerbot bot add "..name, "SAY");
+				SendChatMessage(L[".playerbot bot add "]..name, "SAY");
 			end
 		end
 	else
-		DisplayInfomation("You have no friends.");
+		DisplayInfomation(L["NO_FRIENDS_FOUND"]);
 	end
 end
 
@@ -84,7 +85,7 @@ function CommandFriendsInvite(index)
 			end
 		end
 	else
-		DisplayInfomation("You have no friends.");
+		DisplayInfomation(L["NO_FRIENDS_FOUND"]);
 	end
 end
 
@@ -100,15 +101,15 @@ function CommandInspectFrame(index)
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
 	if (targetName == nil or targetName == "") then
-		DisplayInfomation("You have no target.");
+		DisplayInfomation(L["NO_TARGET"]);
 		return;
 	end
 	if (not UnitIsPlayer("target")) then
-		DisplayInfomation("A bot needs to be targetted.");
+		DisplayInfomation(L["NEED_BOT_TARGET"]);
 		return;
 	end
 	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation("The target is not in your group.");
+		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
 		return;
 	end
 	-- if (not IsRealPartyLeader()) then
@@ -121,11 +122,11 @@ end
 function CommandInitForLevel(index)
 	local targetName = UnitName("target");
 	if (targetName == nil or targetName == "") then
-		DisplayInfomation("You have no target.");
+		DisplayInfomation(L["NO_TARGET"]);
 		return;
 	end
 	if (not UnitIsPlayer("target")) then
-		DisplayInfomation("A bot needs to be targetted.");
+		DisplayInfomation(L["NEED_BOT_TARGET"]);
 		return;
 	end
 	-- if (not IsRealPartyLeader()) then
@@ -155,7 +156,7 @@ function CommandCombatStop(index)
 			for i=1, GetNumRaidMembers(), 1 do
 				local name = (UnitName("raid"..i));
 				if (name) then
-					DisplayInfomation("In the group "..name.." out of combat"); -- Needs correction
+					DisplayInfomation(L["In the group "]..name..L[" out of combat"]); -- Needs correction
 					SendChatMessage(UnBotExecuteCommand[index]..name, "PARTY");
 				end
 			end
@@ -166,7 +167,7 @@ function CommandCombatStop(index)
 			for i=1, GetNumPartyMembers(), 1 do
 				local name = (UnitName("party"..i));
 				if (name) then
-					DisplayInfomation("In the group "..name.." out of combat"); -- Needs correction
+					DisplayInfomation(L["In the group "]..name..L[" out of combat"]); -- Needs correction
 					SendChatMessage(UnBotExecuteCommand[index]..name, "PARTY");
 				end
 			end
@@ -208,22 +209,22 @@ function CommandUnBotItemList(index)
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
 	if (targetName == nil or targetName == "") then
-		DisplayInfomation("You have no target.");
+		DisplayInfomation(L["NO_TARGET"]);
 		return;
 	end
 	if (not UnitIsPlayer("target")) then
-		DisplayInfomation("A bot needs to be targetted.");
+		DisplayInfomation(L["NEED_BOT_TARGET"]);
 		return;
 	end
 	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation("The target is not in your group.");
+		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
 		return;
 	end
 	-- if (not IsRealPartyLeader()) then
 	-- 	DisplayInfomation("你当前不是队伍领袖。");
 	-- 	return;
 	-- end
-	CreateIconsByUnBotBagsFrame(1, "UnBotItemList"..targetName,1,false,{},targetName,targetClass,"View items",FlushItemsToBags,nil,GetItemFunc);
+	CreateIconsByUnBotBagsFrame(1, "UnBotItemList"..targetName,1,false,{},targetName,targetClass,L["View items"],FlushItemsToBags,nil,GetItemFunc);
 end
 
 function CommandUnBotDestroyItem(index)
@@ -232,15 +233,15 @@ function CommandUnBotDestroyItem(index)
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
 	if (targetName == nil or targetName == "") then
-		DisplayInfomation("You have no target.");
+		DisplayInfomation(L["NO_TARGET"]);
 		return;
 	end
 	if (not UnitIsPlayer("target")) then
-		DisplayInfomation("A bot needs to be targetted.");
+		DisplayInfomation(L["NEED_BOT_TARGET"]);
 		return;
 	end
 	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation("The target is not in your group.");
+		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
 		return;
 	end
 	-- if (not IsRealPartyLeader()) then
@@ -256,15 +257,15 @@ function CommandUnBotEquipItem(index)
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
 	if (targetName == nil or targetName == "") then
-		DisplayInfomation("You have no target.");
+		DisplayInfomation(L["NO_TARGET"]);
 		return;
 	end
 	if (not UnitIsPlayer("target")) then
-		DisplayInfomation("A bot needs to be targetted.");
+		DisplayInfomation(L["NEED_BOT_TARGET"]);
 		return;
 	end
 	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation("The target is not in your group.");
+		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
 		return;
 	end
 	-- if (not IsRealPartyLeader()) then
@@ -280,15 +281,15 @@ function CommandUnBotSellItem(index)
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
 	if (targetName == nil or targetName == "") then
-		DisplayInfomation("You have no target.");
+		DisplayInfomation(L["NO_TARGET"]);
 		return;
 	end
 	if (not UnitIsPlayer("target")) then
-		DisplayInfomation("A bot needs to be targetted.");
+		DisplayInfomation(L["NEED_BOT_TARGET"]);
 		return;
 	end
 	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation("The target is not in your group.");
+		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
 		return;
 	end
 	-- if (not IsRealPartyLeader()) then
@@ -304,15 +305,15 @@ function CommandUnBotUseItem(index)
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
 	if (targetName == nil or targetName == "") then
-		DisplayInfomation("You have no target.");
+		DisplayInfomation(L["NO_TARGET"]);
 		return;
 	end
 	if (not UnitIsPlayer("target")) then
-		DisplayInfomation("A bot needs to be targetted.");
+		DisplayInfomation(L["NEED_BOT_TARGET"]);
 		return;
 	end
 	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation("The target is not in your group.");
+		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
 		return;
 	end
 	-- if (not IsRealPartyLeader()) then
@@ -328,15 +329,15 @@ function CommandUnBotSpells(index)
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
 	if (targetName == nil or targetName == "") then
-		DisplayInfomation("You have no target.");
+		DisplayInfomation(L["NO_TARGET"]);
 		return;
 	end
 	if (not UnitIsPlayer("target")) then
-		DisplayInfomation("A bot needs to be targetted.");
+		DisplayInfomation(L["NEED_BOT_TARGET"]);
 		return;
 	end
 	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation("The target is not in your group.");
+		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
 		return;
 	end
 	-- if (not IsRealPartyLeader()) then
