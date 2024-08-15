@@ -50,10 +50,29 @@ if GetLocale() == "enUS" then
     --- ExecuteCommand.lua ---
     -----------------------------------------------------------------------------------------------
 
+    -- CommandUnBotSetting
     L["InspectFrame_Show "] = "InspectFrame_Show ";
     L[", Name "] = ", Name ";
+
+    -- CommandShowStrategyFrame & CommandInspectFrame & CommandInitForLevel & CommandUnBotItemList
+    L["NO_TARGET"] = "You have no target.";
+    L["NEED_BOT_TARGET"] = "You need to target a bot.";
+    L["TARGET_NOT_IN_GROUP"] = "The target is not in your group.";
+
+    -- CommandFriendsOnline
+    L[".playerbot bot add "] = ".playerbot bot add ";
+    L["NO_FRIENDS_FOUND"] = "You have no friends.";
+
+    -- CommandCombatStop
+    L["In the group "] = "In the group ";
+    L[" out of combat"] = " out of combat";
+
+    -- CommandUnBotItemList
+    L["View items"] = "View items";
     
     
+
+
     -----------------------------------------------------------------------------------------------
     --- UnBotBags.lua ---
     -----------------------------------------------------------------------------------------------
