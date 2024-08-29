@@ -1,5 +1,25 @@
 ﻿local _, L = ...;
 
+local function CheckForTarget(targetName,isParty,isRaid)
+
+	if (targetName == nil or targetName == "") then
+		DisplayInfomation(L["NO_TARGET"]);
+		return;
+	end
+	if (not UnitIsPlayer("target")) then
+		DisplayInfomation(L["NEED_BOT_TARGET"]);
+		return;
+	end
+	if (isParty == nil and isRaid == nil) then
+		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
+		return;
+	end
+	-- if (not IsRealPartyLeader()) then
+	-- 	DisplayInfomation("你当前不是队伍领袖。");
+	-- 	return;
+	-- end
+end
+
 function CommandUnBotSetting(index)
 	UnBotHideAllSubFrame();
 	UnBotCloseAllBagsFrame();
@@ -32,22 +52,8 @@ function CommandShowStrategyFrame(index)
 	local targetName = UnitName("target");
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
-	if (targetName == nil or targetName == "") then
-		DisplayInfomation(L["NO_TARGET"]);
-		return;
-	end
-	if (not UnitIsPlayer("target")) then
-		DisplayInfomation(L["NEED_BOT_TARGET"]);
-		return;
-	end
-	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
-		return;
-	end
-	-- if (not IsRealPartyLeader()) then
-	-- 	DisplayInfomation("你当前不是队伍领袖。");
-	-- 	return;
-	-- end
+	
+	CheckForTarget(targetName,isParty,isRaid);
 
 	UnBotShowStrategyFrame(targetName, targetClass);
 end
@@ -100,39 +106,17 @@ function CommandInspectFrame(index)
 	local targetName = UnitName("target");
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
-	if (targetName == nil or targetName == "") then
-		DisplayInfomation(L["NO_TARGET"]);
-		return;
-	end
-	if (not UnitIsPlayer("target")) then
-		DisplayInfomation(L["NEED_BOT_TARGET"]);
-		return;
-	end
-	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
-		return;
-	end
-	-- if (not IsRealPartyLeader()) then
-	-- 	DisplayInfomation("你当前不是队伍领袖。");
-	-- 	return;
-	-- end
+	
+	CheckForTarget(targetName,isParty,isRaid);
+
 	InspectFrame_Show("target");
 end
 
 function CommandInitForLevel(index)
 	local targetName = UnitName("target");
-	if (targetName == nil or targetName == "") then
-		DisplayInfomation(L["NO_TARGET"]);
-		return;
-	end
-	if (not UnitIsPlayer("target")) then
-		DisplayInfomation(L["NEED_BOT_TARGET"]);
-		return;
-	end
-	-- if (not IsRealPartyLeader()) then
-	-- 	DisplayInfomation("你当前不是队伍领袖。");
-	-- 	return;
-	-- end
+	
+	CheckForTarget(targetName,true,true);
+
 	local lv = UnitLevel("player");
 	SendChatMessage(UnBotExecuteCommand[index]..tostring(lv), "SAY");
 end
@@ -208,22 +192,9 @@ function CommandUnBotItemList(index)
 	local targetName = UnitName("target");
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
-	if (targetName == nil or targetName == "") then
-		DisplayInfomation(L["NO_TARGET"]);
-		return;
-	end
-	if (not UnitIsPlayer("target")) then
-		DisplayInfomation(L["NEED_BOT_TARGET"]);
-		return;
-	end
-	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
-		return;
-	end
-	-- if (not IsRealPartyLeader()) then
-	-- 	DisplayInfomation("你当前不是队伍领袖。");
-	-- 	return;
-	-- end
+	
+	CheckForTarget(targetName,isParty,isRaid);
+
 	CreateIconsByUnBotBagsFrame(1, "UnBotItemList"..targetName,1,false,{},targetName,targetClass,L["View items"],FlushItemsToBags,nil,GetItemFunc);
 end
 
@@ -232,22 +203,9 @@ function CommandUnBotDestroyItem(index)
 	local targetName = UnitName("target");
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
-	if (targetName == nil or targetName == "") then
-		DisplayInfomation(L["NO_TARGET"]);
-		return;
-	end
-	if (not UnitIsPlayer("target")) then
-		DisplayInfomation(L["NEED_BOT_TARGET"]);
-		return;
-	end
-	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
-		return;
-	end
-	-- if (not IsRealPartyLeader()) then
-	-- 	DisplayInfomation("你当前不是队伍领袖。");
-	-- 	return;
-	-- end
+
+	CheckForTarget(targetName,isParty,isRaid);
+	
 	CreateIconsByUnBotBagsFrame(3, "UnBotDestroyItem"..targetName,1,true,{},targetName,targetClass,"Discard items",FlushItemsToBags,UnBotExecuteCommand[index],GetItemFunc);
 end
 
@@ -256,22 +214,9 @@ function CommandUnBotEquipItem(index)
 	local targetName = UnitName("target");
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
-	if (targetName == nil or targetName == "") then
-		DisplayInfomation(L["NO_TARGET"]);
-		return;
-	end
-	if (not UnitIsPlayer("target")) then
-		DisplayInfomation(L["NEED_BOT_TARGET"]);
-		return;
-	end
-	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
-		return;
-	end
-	-- if (not IsRealPartyLeader()) then
-	-- 	DisplayInfomation("你当前不是队伍领袖。");
-	-- 	return;
-	-- end
+	
+	CheckForTarget(targetName,isParty,isRaid);
+
 	CreateIconsByUnBotBagsFrame(2, "UnBotEquipItem"..targetName,1,true,{},targetName,targetClass,"Equip items",FlushItemsToBags,UnBotExecuteCommand[index],GetItemFunc);
 end
 
@@ -280,22 +225,9 @@ function CommandUnBotSellItem(index)
 	local targetName = UnitName("target");
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
-	if (targetName == nil or targetName == "") then
-		DisplayInfomation(L["NO_TARGET"]);
-		return;
-	end
-	if (not UnitIsPlayer("target")) then
-		DisplayInfomation(L["NEED_BOT_TARGET"]);
-		return;
-	end
-	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
-		return;
-	end
-	-- if (not IsRealPartyLeader()) then
-	-- 	DisplayInfomation("你当前不是队伍领袖。");
-	-- 	return;
-	-- end
+	
+	CheckForTarget(targetName,isParty,isRaid);
+
 	CreateIconsByUnBotBagsFrame(4, "UnBotSellItem"..targetName,1,true,{},targetName,targetClass,"Sell items",FlushItemsToBags,UnBotExecuteCommand[index],GetItemFunc);
 end
 
@@ -304,22 +236,9 @@ function CommandUnBotUseItem(index)
 	local targetName = UnitName("target");
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
-	if (targetName == nil or targetName == "") then
-		DisplayInfomation(L["NO_TARGET"]);
-		return;
-	end
-	if (not UnitIsPlayer("target")) then
-		DisplayInfomation(L["NEED_BOT_TARGET"]);
-		return;
-	end
-	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
-		return;
-	end
-	-- if (not IsRealPartyLeader()) then
-	-- 	DisplayInfomation("你当前不是队伍领袖。");
-	-- 	return;
-	-- end
+	
+	CheckForTarget(targetName,isParty,isRaid);
+	
 	CreateIconsByUnBotBagsFrame(5, "UnBotUseItem"..targetName,1,true,{},targetName,targetClass,"Use items",FlushItemsToBags,UnBotExecuteCommand[index],GetItemFunc);
 end
 
@@ -328,22 +247,9 @@ function CommandUnBotSpells(index)
 	local targetName = UnitName("target");
 	local isParty = UnitInParty("target");
 	local isRaid = UnitInRaid("target");
-	if (targetName == nil or targetName == "") then
-		DisplayInfomation(L["NO_TARGET"]);
-		return;
-	end
-	if (not UnitIsPlayer("target")) then
-		DisplayInfomation(L["NEED_BOT_TARGET"]);
-		return;
-	end
-	if (isParty == nil and isRaid == nil) then
-		DisplayInfomation(L["TARGET_NOT_IN_GROUP"]);
-		return;
-	end
-	-- if (not IsRealPartyLeader()) then
-	-- 	DisplayInfomation("你当前不是队伍领袖。");
-	-- 	return;
-	-- end
+	
+	CheckForTarget(targetName,isParty,isRaid);
+
 	CreateIconsByUnBotBagsFrame(0, "UnBotSpells"..targetName,2,false,{},targetName,targetClass,"Spells",FlushItemsToBags,UnBotExecuteCommand[index],GetItemFunc);
 end
 
