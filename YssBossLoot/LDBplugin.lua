@@ -1,6 +1,5 @@
 
---local _, YssBossLoot = ...
-local YssBossLoot = YssBossLoot
+local _, YssBossLoot = ...
 
 local broker = LibStub("LibDataBroker-1.1")
 local icon = LibStub("LibDBIcon-1.0")

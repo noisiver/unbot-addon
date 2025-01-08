@@ -10,12 +10,10 @@ enUS['Normal 10-man Loot'] = true
 enUS['Normal 25-man Loot'] = true
 enUS['Heroic 10-man Loot'] = true
 enUS['Heroic 25-man Loot'] = true
-enUS['Non Boss Drops'] = true
 
 enUS['Dungeon'] = true
 enUS['Raid'] = true
-enUS["Show Boss Frame"] = true
-enUS['|cffff2222%s not cached!'] = true
+
 enUS["|cffffff00Click|r to open YssBossLoot Options"] = true
 
 enUS["UNSAVE_QUERY_MSG"] = "|cFF33FF99YssBossLoot|r has detected that you recently disconnected. This may have been caused by scanning too many |cffff2020unsafe itemlinks|r too fast which increases your chance of repeat disconnects while scanning.\n\n|cffffd200Do you want to continue scanning?|r"

@@ -1,6 +1,5 @@
 
---local _, YBL = ...
-local YBL = YssBossLoot
+local _, YBL = ...
 
 local L = LibStub("AceLocale-3.0"):GetLocale("YssBossLoot", true)
 local icon = LibStub("LibDBIcon-1.0")
@@ -114,7 +113,7 @@ YBL.MainOption = {
 				end
 			end,
 			set = function(info, val)
-				--print(tostring(val))
+				print(tostring(val))
 				YBL.db.profile.OpentoCurrentlySelectedGroupDifficulty = val
 			end,
 			disabled = function() return not YBL.db.profile.OpentoCurrentInstanceDifficulty end,
