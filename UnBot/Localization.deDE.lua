@@ -6,17 +6,17 @@ if GetLocale() == "deDE" then
     --- Bindings.lua ---
     -----------------------------------------------------------------------------------------------
 
-    L["Un Bot Command ActionButton 1"] = "Un Bot Kommando ActionButton 1";
-    L["Un Bot Command ActionButton 2"] = "Un Bot Kommando ActionButton 2";
-    L["Un Bot Command ActionButton 3"] = "Un Bot Kommando ActionButton 3";
-    L["Un Bot Command ActionButton 4"] = "Un Bot Kommando ActionButton 4";
-    L["Un Bot Command ActionButton 5"] = "Un Bot Kommando ActionButton 5";
-    L["Un Bot Command ActionButton 6"] = "Un Bot Kommando ActionButton 6";
-    L["Un Bot Command ActionButton 7"] = "Un Bot Kommando ActionButton 7";
-    L["Un Bot Command ActionButton 8"] = "Un Bot Kommando ActionButton 8";
-    L["Un Bot Command ActionButton 9"] = "Un Bot Kommando ActionButton 9";
-    L["Un Bot Command ActionButton 10"] = "Un Bot Kommando ActionButton 10";
-    L["Un Bot Close Frame ActionButton"] = "Un Bot Fenster schließen Button";
+    L["Un Bot Command ActionButton 1"] = "UnBot Kommando ActionButton 1";
+    L["Un Bot Command ActionButton 2"] = "UnBot Kommando ActionButton 2";
+    L["Un Bot Command ActionButton 3"] = "UnBot Kommando ActionButton 3";
+    L["Un Bot Command ActionButton 4"] = "UnBot Kommando ActionButton 4";
+    L["Un Bot Command ActionButton 5"] = "UnBot Kommando ActionButton 5";
+    L["Un Bot Command ActionButton 6"] = "UnBot Kommando ActionButton 6";
+    L["Un Bot Command ActionButton 7"] = "UnBot Kommando ActionButton 7";
+    L["Un Bot Command ActionButton 8"] = "UnBot Kommando ActionButton 8";
+    L["Un Bot Command ActionButton 9"] = "UnBot Kommando ActionButton 9";
+    L["Un Bot Command ActionButton 10"] = "UnBot Kommando ActionButton 10";
+    L["Un Bot Close Frame ActionButton"] = "UnBot Fenster schließen Button";
 
     -----------------------------------------------------------------------------------------------
     --- EquipInventory.xml ---
