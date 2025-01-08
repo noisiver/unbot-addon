@@ -1,7 +1,6 @@
 
---local _, YssBossLoot = ...
-local YssBossLoot = YssBossLoot
-local ORANGE_FONT_COLOR_CODE = "|cffff7f3f";
+local _, YssBossLoot = ...
+
 local YBL_WMS = {}
 
 local L = LibStub("AceLocale-3.0"):GetLocale("YssBossLoot", true)
@@ -98,8 +97,7 @@ hooksecurefunc("WorldMapFrame_LoadContinents", function(...)
 			wipe(info)
 			for j, ext in ipairs(YssBossLoot.Ext) do
 				info.notClickable = nil
-				--info.text = "   "..ext
-				info.text = "   "..YssBossLoot.BonusLocale[ext]
+				info.text = "   "..ext
 				info.arg1 = rConts[sortedLConts[i]]
 				info.arg2 = ext
 				info.func = WorldMapContinentButton_OnClick

@@ -1,4 +1,5 @@
-﻿
+﻿local _, L = ...;
+
 function UnBotTick(bagsFrame, tick)
 	if (bagsFrame.lastFlushTick > 0) then
 		if  ((tick - bagsFrame.lastFlushTick) > bagsFrame.waitFlushTime) then
@@ -19,8 +20,8 @@ function UnBotCanFlushInfo(bagsFrame)
 	end
 end
 
-function UnBotBagsHeadFrameSetFontText(rece, name, info)
-	local text = "|cff0000cc"..rece.."|r |cff00cccc"..name.."|r - |cffcccccc"..info.."|r";
+function UnBotBagsHeadFrameSetFontText(race, name, info)
+	local text = "|cff0000cc"..race.."|r |cff00cccc"..name.."|r - |cffcccccc"..info.."|r";
 	return text;
 end
 
@@ -81,13 +82,13 @@ function UnBotGetCostEnergyText(costType, costValue)
 		return " ";
 	end
 	if (costType == 0) then
-		return "Consume"..tostring(costValue).."Mana"; -- Needs correction
+		return L["Consume"]..tostring(costValue)..L["Mana"]; -- Needs correction
 	elseif (costType == 1) then
-		return "Consume"..tostring(costValue).."Rage"; -- Needs correction
+		return L["Consume"]..tostring(costValue)..L["Rage"]; -- Needs correction
 	elseif (costType == 3) then
-		return "Consume"..tostring(costValue).."Energy"; -- Needs correction
+		return L["Consume"]..tostring(costValue)..L["Energy"]; -- Needs correction
 	else
-		return "Consume"..tostring(costValue).."Resource"; -- Needs correction
+		return L["Consume"]..tostring(costValue)..L["Resource"]; -- Needs correction
 	end
 end
 	--item [2] = spellID
@@ -106,10 +107,10 @@ function UnBotShowButtonTips(newFrame, fromParent)
 			local needQuery = fromParent.dataGroup[newFrame.dataIndex][5];
 			if (needQuery == false) then
 				if (fromParent.bagsType == 1) then
-					GameTooltip:SetHyperlink("item:"..itemID..":0:0:0:0:0:0:0");
+					GameTooltip:SetHyperlink(L["item:"]..itemID..":0:0:0:0:0:0:0");
 					if (fromParent.dataGroup[newFrame.dataIndex][7] ~= nil and fromParent.dataGroup[newFrame.dataIndex][7] > 1) then
 						GameTooltip:AddLine(" ",1,1,1,1);
-						GameTooltip:AddDoubleLine("Quantity owned：",tostring(fromParent.dataGroup[newFrame.dataIndex][7]),0,0.8,0.8,0.8,0.8,0); -- Needs correction
+						GameTooltip:AddDoubleLine(L["Quantity owned："],tostring(fromParent.dataGroup[newFrame.dataIndex][7]),0,0.8,0.8,0.8,0.8,0); -- Needs correction
 					end
 				elseif (fromParent.bagsType == 2) then
 					local spellLink = GetSpellLink(itemID);
@@ -123,47 +124,47 @@ function UnBotShowButtonTips(newFrame, fromParent)
 						if (spellData[10] <= 0) then
 							castDis = "Self-cast";
 						else
-							castDis = tostring(spellData[10]).." yards";
+							castDis = tostring(spellData[10])..L[" yards"];
 						end
 						if (spellData[9] <= 0) then
-							GameTooltip:AddDoubleLine("Instant",castDis,0.65,0.55,0,0,0.8,0.8);
+							GameTooltip:AddDoubleLine(L["Instant"],castDis,0.65,0.55,0,0,0.8,0.8);
 						else
-							GameTooltip:AddDoubleLine("Cast time: " .. tostring(spellData[9]/1000).." second(s)",castDis,0.65,0.55,0,0,0.8,0.8); -- Needs correction
+							GameTooltip:AddDoubleLine(L["Cast time: "] .. tostring(spellData[9]/1000)..L[" second(s)"],castDis,0.65,0.55,0,0,0.8,0.8); -- Needs correction
 						end
 					end
 				end
 			else
 				GameTooltip:AddLine(fromParent.dataGroup[newFrame.dataIndex][3],1,0,0,1);
-				GameTooltip:AddLine("This item has not appeared in your backpack. You need to query the server. Please click the refresh button at the bottom of the interface to see it.",1,0,0,1); -- Needs correction
+				GameTooltip:AddLine(L["ITEM_NOT_IN_BAG_REFRESH"],1,0,0,1); -- Needs correction
 			end
 			GameTooltip:AddLine(" ",1,1,1,1);
 			if (fromParent.command ~= nil and fromParent.command ~= "") then
 				if (fromParent.bagsType == 1) then
 					if (fromParent.command == UnBotExecuteCommand[66]) then
-						GameTooltip:AddLine("LMB: Equip",0.65,0.55,0,1);
+						GameTooltip:AddLine(L["LMB: Equip"],0.65,0.55,0,1);
 					elseif (tostring(fromParent.command) == UnBotExecuteCommand[65]) then
-						GameTooltip:AddLine("LMB: Discard",0.65,0.55,0,1);
+						GameTooltip:AddLine(L["LMB: Discard"],0.65,0.55,0,1);
 					elseif (tostring(fromParent.command) == UnBotExecuteCommand[67]) then
-						GameTooltip:AddLine("LMB: Sell",0.65,0.55,0,1);
+						GameTooltip:AddLine(L["LMB: Sell"],0.65,0.55,0,1);
 					elseif (tostring(fromParent.command) == UnBotExecuteCommand[68]) then
-						GameTooltip:AddLine("LMB: Use",0.65,0.55,0,1);
+						GameTooltip:AddLine(L["LMB: Use"],0.65,0.55,0,1);
 					else
-						GameTooltip:AddLine("LMB: Use",0.65,0.55,0,1);
+						GameTooltip:AddLine(L["LMB: Use"],0.65,0.55,0,1);
 					end
 				elseif (fromParent.bagsType == 2) then
-					GameTooltip:AddLine("LMB: Cast",0.65,0.55,0,1);
+					GameTooltip:AddLine(L["LMB: Cast"],0.65,0.55,0,1);
 				else
-					GameTooltip:AddLine("LMB: Let "..fromParent.target.." "..fromParent.activeText,0.65,0.55,0,1); -- Needs correction
+					GameTooltip:AddLine(L["LMB: Let "]..fromParent.target.." "..fromParent.activeText,0.65,0.55,0,1); -- Needs correction
 				end
 			end
-			GameTooltip:AddLine("RMB: Hide",0.65,0.55,0,1);
+			GameTooltip:AddLine(L["RMB: Hide"],0.65,0.55,0,1);
 			if (fromParent.bagsType == 2) then
 				GameTooltip:AddDoubleLine("ID:",tostring(itemID),0,0.8,0.8,0.8,0,0);
 			end
 		else
 			GameTooltip:AddLine(newFrame.bagsIcon);
 		end
-		GameTooltip:AddDoubleLine("Index:",tostring(newFrame.iconIndex),0,0,1,1,0,1);
+		GameTooltip:AddDoubleLine(L["Index:"],tostring(newFrame.iconIndex),0,0,1,1,0,1);
 		GameTooltip:AddTexture(fromParent.dataGroup[newFrame.dataIndex][4]);
 		GameTooltip:Show();
 	end
@@ -177,7 +178,7 @@ local function CreateBagsTypeOptions(fromParent, checkedIndex)
 	newFrame.title = newFrame:CreateFontString(newFrame:GetName().."Title","ARTWORK");
 	newFrame.title:SetFont("Fonts\\FRIZQT__.TTF",11);
 	newFrame.title:SetTextColor(1.0,0.8,0,1);
-	newFrame.title:SetText("View");
+	newFrame.title:SetText(L["View"]);
 	newFrame.title:SetPoint("TOPLEFT",newFrame,"TOPRIGHT",-2,-8);
 	newFrame.title:SetShadowColor(0,0,0);
 	newFrame.title:SetShadowOffset(1,-1);
@@ -185,7 +186,7 @@ local function CreateBagsTypeOptions(fromParent, checkedIndex)
 	newFrame.parentFrame = fromParent;
 	newFrame.command = nil;
 	newFrame.afterRemove = false;
-	newFrame.parentFrameText = UnBotBagsHeadFrameSetFontText(fromParent.raceName, fromParent.target, "Inventory");
+	newFrame.parentFrameText = UnBotBagsHeadFrameSetFontText(fromParent.raceName, fromParent.target, L["Inventory"]);
 	newFrame:SetPoint("TOPRIGHT", fromParent, "TOPRIGHT", -52, -24 * 1);
 	table.insert(fromParent.optionsType, newFrame);
 	if (checkedIndex == 1) then
@@ -196,7 +197,7 @@ local function CreateBagsTypeOptions(fromParent, checkedIndex)
 	newFrame.title = newFrame:CreateFontString(newFrame:GetName().."Title","ARTWORK");
 	newFrame.title:SetFont("Fonts\\FRIZQT__.TTF",11);
 	newFrame.title:SetTextColor(1.0,0.8,0,1);
-	newFrame.title:SetText("Equip");
+	newFrame.title:SetText(L["Equip"]);
 	newFrame.title:SetPoint("TOPLEFT",newFrame,"TOPRIGHT",-2,-8);
 	newFrame.title:SetShadowColor(0,0,0);
 	newFrame.title:SetShadowOffset(1,-1);
@@ -204,7 +205,7 @@ local function CreateBagsTypeOptions(fromParent, checkedIndex)
 	newFrame.parentFrame = fromParent;
 	newFrame.command = UnBotExecuteCommand[66];
 	newFrame.afterRemove = true;
-	newFrame.parentFrameText = UnBotBagsHeadFrameSetFontText(fromParent.raceName, fromParent.target, "Equip item");
+	newFrame.parentFrameText = UnBotBagsHeadFrameSetFontText(fromParent.raceName, fromParent.target, L["Equip item"]);
 	newFrame:SetPoint("TOPRIGHT", fromParent, "TOPRIGHT", -52, -29 * 2 + 13);
 	table.insert(fromParent.optionsType, newFrame);
 	if (checkedIndex == 2) then
@@ -215,7 +216,7 @@ local function CreateBagsTypeOptions(fromParent, checkedIndex)
 	newFrame.title = newFrame:CreateFontString(newFrame:GetName().."Title","ARTWORK");
 	newFrame.title:SetFont("Fonts\\FRIZQT__.TTF",11);
 	newFrame.title:SetTextColor(1.0,0.8,0,1);
-	newFrame.title:SetText("Discard");
+	newFrame.title:SetText(L["Discard"]);
 	newFrame.title:SetPoint("TOPLEFT",newFrame,"TOPRIGHT",-2,-8);
 	newFrame.title:SetShadowColor(0,0,0);
 	newFrame.title:SetShadowOffset(1,-1);
@@ -223,7 +224,7 @@ local function CreateBagsTypeOptions(fromParent, checkedIndex)
 	newFrame.parentFrame = fromParent;
 	newFrame.command = UnBotExecuteCommand[65];
 	newFrame.afterRemove = true;
-	newFrame.parentFrameText = UnBotBagsHeadFrameSetFontText(fromParent.raceName, fromParent.target, "Discard item");
+	newFrame.parentFrameText = UnBotBagsHeadFrameSetFontText(fromParent.raceName, fromParent.target, L["Discard item"]);
 	newFrame:SetPoint("TOPRIGHT", fromParent, "TOPRIGHT", -52, -29 * 3 + 21);
 	table.insert(fromParent.optionsType, newFrame);
 	if (checkedIndex == 3) then
@@ -234,7 +235,7 @@ local function CreateBagsTypeOptions(fromParent, checkedIndex)
 	newFrame.title = newFrame:CreateFontString(newFrame:GetName().."Title","ARTWORK");
 	newFrame.title:SetFont("Fonts\\FRIZQT__.TTF",11);
 	newFrame.title:SetTextColor(1.0,0.8,0,1);
-	newFrame.title:SetText("Sell");
+	newFrame.title:SetText(L["Sell"]);
 	newFrame.title:SetPoint("TOPLEFT",newFrame,"TOPRIGHT",-2,-8);
 	newFrame.title:SetShadowColor(0,0,0);
 	newFrame.title:SetShadowOffset(1,-1);
@@ -242,7 +243,7 @@ local function CreateBagsTypeOptions(fromParent, checkedIndex)
 	newFrame.parentFrame = fromParent;
 	newFrame.command = UnBotExecuteCommand[67];
 	newFrame.afterRemove = true;
-	newFrame.parentFrameText = UnBotBagsHeadFrameSetFontText(fromParent.raceName, fromParent.target, "Sell item");
+	newFrame.parentFrameText = UnBotBagsHeadFrameSetFontText(fromParent.raceName, fromParent.target, L["Sell item"]);
 	newFrame:SetPoint("TOPRIGHT", fromParent, "TOPRIGHT", -52, -29 * 4 + 29);
 	table.insert(fromParent.optionsType, newFrame);
 	if (checkedIndex == 4) then
@@ -253,7 +254,7 @@ local function CreateBagsTypeOptions(fromParent, checkedIndex)
 	newFrame.title = newFrame:CreateFontString(newFrame:GetName().."Title","ARTWORK");
 	newFrame.title:SetFont("Fonts\\FRIZQT__.TTF",11);
 	newFrame.title:SetTextColor(1.0,0.8,0,1);
-	newFrame.title:SetText("Use");
+	newFrame.title:SetText(L["Use"]);
 	newFrame.title:SetPoint("TOPLEFT",newFrame,"TOPRIGHT",-2,-9);
 	newFrame.title:SetShadowColor(0,0,0);
 	newFrame.title:SetShadowOffset(1,-1);
@@ -261,7 +262,7 @@ local function CreateBagsTypeOptions(fromParent, checkedIndex)
 	newFrame.parentFrame = fromParent;
 	newFrame.command = UnBotExecuteCommand[68];
 	newFrame.afterRemove = true;
-	newFrame.parentFrameText = UnBotBagsHeadFrameSetFontText(fromParent.raceName, fromParent.target, "Use item");
+	newFrame.parentFrameText = UnBotBagsHeadFrameSetFontText(fromParent.raceName, fromParent.target, L["Use item"]);
 	newFrame:SetPoint("TOPRIGHT", fromParent, "TOPRIGHT", -52, -29 * 5 + 37);
 	table.insert(fromParent.optionsType, newFrame);
 	if (checkedIndex == 5) then
@@ -330,7 +331,7 @@ local function CreateOptionByParent(fromParent,flushFunc)
 	newFrame:SetSize(28, 28)
 
 	newFrame = CreateFrame("Button","BagsFrameFlush"..fromParent:GetName(),fromParent,"UIPanelButtonTemplate");
-	newFrame:SetText("Refresh");
+	newFrame:SetText(L["Refresh"]);
 	newFrame:SetWidth(56);
 	newFrame:SetHeight(24);
 	newFrame:Show();
@@ -463,7 +464,7 @@ function UpdateUnBotBagsFramePage(bagsFrame)
 	if (overIndex == 0) then
 		overIndex = 1;
 	end
-	bagsFrame.page:SetText("Page "..tostring(bagsFrame.currentPage).." of "..tostring(overIndex));
+	bagsFrame.page:SetText(L["Page "]..tostring(bagsFrame.currentPage)..L[" of "]..tostring(overIndex));
 end
 
 function ExecuteCommandByBagsItem(bagsFrame,index)
@@ -474,7 +475,7 @@ function ExecuteCommandByBagsItem(bagsFrame,index)
 		if (bagsFrame.command == UnBotExecuteCommand[67]) then
 			local targetName = UnitName("target");
 			if (targetName == nil or targetName == "") then
-				DisplayInfomation("You have no vendor targeted.");
+				DisplayInfomation(L["You have no vendor targeted."]);
 				return false;
 			end
 		end
@@ -514,9 +515,9 @@ function FlushItemsToBags(bagsFrame,command)
 	end
 	UpdateUnBotBagsFramePage(bagsFrame);
 	if (bagsFrame.bagsType == 1) then
-		SendChatMessage("c", "WHISPER", nil, bagsFrame.target);
+		SendChatMessage(L["c"], "WHISPER", nil, bagsFrame.target);
 	elseif (bagsFrame.bagsType == 2) then
-		SendChatMessage("spells", "WHISPER", nil, bagsFrame.target);
+		SendChatMessage(L["spells"], "WHISPER", nil, bagsFrame.target);
 	end
 	bagsFrame.lastFlushTick = GetTime();
 end
@@ -653,7 +654,7 @@ function RecvMuchSpellToBags(bagsFrame,info)
 			table.insert(bagsFrame.dataGroup, spell);
 			spell[1] = #(bagsFrame.dataGroup);
 		else
-			DisplayInfomation("Recv spell id "..tostring(spellID).." error.");
+			DisplayInfomation(L["Recv spell id "]..tostring(spellID).." error.");
 		end
 	end
 	

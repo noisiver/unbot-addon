@@ -1,6 +1,5 @@
 
---local _, YssBossLoot = ...
-local YssBossLoot = YssBossLoot
+local _, YssBossLoot = ...
 
 local L = LibStub("AceLocale-3.0"):GetLocale("YssBossLoot", true)
 local BZ = LibStub("LibBabble-Zone-3.0", true):GetLookupTable()
@@ -252,7 +251,7 @@ YssBossLoot.Bosses.Dungeon = { -- format is maplevel1:map1X:map1Y|maplevel2:map2
 		["Anub'arak"]="1:6203:4839",
 	},
 	["Gundrak"] = {
-		["Drakkari Colossus"]="1:4649:6540",
+		["Drakkari Elemental"]="1:4649:6540",
 		["Eck the Ferocious"]="1:2532:7015",
 		["Gal'darah"]="1:4657:2781",
 		["Moorabi"]="1:3959:4934",
@@ -410,7 +409,7 @@ YssBossLoot.Bosses.Raid = {
 		["Yogg-Saron"] = "4:6806:4070|6:5395:6467",
 	},
 	["Trial of the Crusader"] = {
-		["The Beasts of Northrend"] = "1:5103:6424",
+		["The Northrend Beasts"] = "1:5103:6424",
 		["Lord Jaraxxus"] = "1:4203:5274",
 		["Faction Champions"] = "1:6003:5274",
 		["The Twin Val'kyr"] = "1:5103:4124",

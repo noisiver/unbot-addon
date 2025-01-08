@@ -1,25 +1,47 @@
 ## Interface: 30300
-## Title: YssBossLoot
-## Title-zhCN: [大脚][集]副本掉落
-## Title-zhTW: [大腳][集]副本掉落
-## Notes: |cffbc8f8fDisplays Instance Maps.|r
-## Notes-zhCN: |cff00ff00YssBossLoot|r                                             |cffbc8f8f显示副本中的首领与小怪可能掉落的物品。|r
-## Notes-zhTW: |cff00ff00YssBossLoot|r                                             |cffbc8f8f顯示副本中的首領與小怪可能掉落的物品。|r
-## X-Curse-Packaged-Version: v1.0.3
+## X-Curse-Packaged-Version: v1.0.4
 ## X-Curse-Project-Name: YssBossLoot
 ## X-Curse-Project-ID: yssbossloot
 ## X-Curse-Repository-ID: wow/yssbossloot/mainline
+
+## Title: YssBossLoot
+## Notes: Displays Instance Maps
 ## Author: Yssaril
-## Version: v1.0.3
-## LoadOnDemand: 1
+## Version: v1.0.4
 ## SavedVariables: YssBossLootDB, YssBossLootMissingTranslations
 
-g.lua
+## OptionalDeps: Ace3, LibBabble-Zone-3.0, LibBabble-Boss-3.0, LibDBIcon-1.0, LibInstanceLootData-1.0
+
+## LoadManagers: AddonLoader
+## X-LoadOn-Always: Delayed
+
+#@no-lib-strip@
+Libs\Libstub\Libstub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
+Libs\AceGUI-3.0\AceGUI-3.0.xml
+Libs\AceConfig-3.0\AceConfig-3.0.xml
+Libs\AceLocale-3.0\AceLocale-3.0.xml
+Libs\AceDB-3.0\AceDB-3.0.xml
+Libs\AceDBOptions-3.0\AceDBOptions-3.0.xml
+Libs\LibBabble-Zone-3.0\lib.xml
+Libs\LibBabble-Boss-3.0\lib.xml
+#@end-no-lib-strip@
+Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+#@no-lib-strip@
+Libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
+#@end-no-lib-strip@
+
+Libs\LibInstanceLootData-1.0\lib.xml
 
 Localization\enUS.lua
+Localization\deDE.lua
+Localization\esES.lua
+Localization\esMX.lua
+Localization\frFR.lua
+Localization\koKR.lua
+Localization\ruRU.lua
 Localization\zhCN.lua
 Localization\zhTW.lua
-Localization\bonus.lua
 
 widgets\LootWidget.lua
 Data\BossData.lua

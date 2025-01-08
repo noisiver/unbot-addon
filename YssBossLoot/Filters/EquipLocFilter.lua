@@ -1,11 +1,7 @@
 
---local addonName, addon = ...
+local addonName, addon = ...
 
---local L = LibStub("AceLocale-3.0"):GetLocale(addonName, true)
-
-local addon = YssBossLoot
-
-local L = LibStub("AceLocale-3.0"):GetLocale("YssBossLoot", true)
+local L = LibStub("AceLocale-3.0"):GetLocale(addonName, true)
 
 addon.filters["Equip Location Filter"] = {}
 local filter = addon.filters["Equip Location Filter"]

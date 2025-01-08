@@ -13,9 +13,9 @@
             <OnEnter>
 				if (self.item ~= nil) then
 					GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT");
-					GameTooltip:SetHyperlink("item:"..tostring(self.item[3])..":0:0:0:0:0:0:0");
+					GameTooltip:SetHyperlink(L["item:"]..tostring(self.item[3])..":0:0:0:0:0:0:0");
 					GameTooltip:AddLine(" ",1,1,1,1);
-					GameTooltip:AddLine("Left mouse button： Make "..self.targetName.." equip this item.",0.75,0.75,0,1);
+					GameTooltip:AddLine(L["Left mouse button： Make "]..self.targetName..L[" equip this item."],0.75,0.75,0,1);
 					GameTooltip:Show();
 				end
 			</OnEnter>
@@ -28,7 +28,7 @@
 				if (self.item ~= nil) then
 					local itemLink
 				  _,itemLink,_,_,_,_,_,_,_,_ = GetItemInfo(tostring(self.item[3]));
-					SendChatMessage("e "..tostring(itemLink), "WHISPER", nil, self.targetName);
+					SendChatMessage(L["e "]..tostring(itemLink), "WHISPER", nil, self.targetName);
 					UnBotStartReloadInspectFrame();
 				end
 				EquipInventoryFrame:Hide();

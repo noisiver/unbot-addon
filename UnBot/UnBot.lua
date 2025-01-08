@@ -1,3 +1,4 @@
+local _, L = ...;
 
 function UnBotSplit(str, split_char)
     local sub_str_tab = {};
@@ -23,7 +24,7 @@ function UnBotCloseAll()
 	OnlineFrame:Hide();
 	NPCFrame:Hide();
 	UnBotFrame:Hide();
-	DisplayInfomation("Bar is now hidden. Use /unbot to toggle the bar.");
+	DisplayInfomation(L["Bar is now hidden. Use /unbot to toggle the bar."]);
 end
 
 local function AddButton(name,fromParent,temp,gi,ci)
@@ -66,7 +67,7 @@ function InspectFrame_Show(unit)
 		if( IsAddOnLoaded("Blizzard_InspectUI") == nil) then
 			local loaded, reason = LoadAddOn("Blizzard_InspectUI");
 			if( loaded == nil) then
-				DisplayInfomation("Window initialization failed: "..reason);
+				DisplayInfomation(L["Window initialization failed: "]..reason);
 			else
 				DoInspectFrameShow(unit);
 			end
@@ -83,7 +84,7 @@ function DoInspectFrameShow(unit)
 			InspectSwitchTabs(1);
 			ShowUIPanel(InspectFrame);
 			InspectFrame_UpdateTalentTab();
-			DisplayInfomation("InspectFrame_Show "..UnitName(unit));
+			DisplayInfomation(L["InspectFrame_Show "]..UnitName(unit));
 		end	
 	end
 end
@@ -91,7 +92,7 @@ end
 
 
 function InitializeUnBotFrame()
-	DisplayInfomation("Initializing bot controller");
+	DisplayInfomation(L["Initializing bot controller"]);
 	if(UnBotFrame.Inited == true) then
 		return;
 	end
@@ -120,7 +121,7 @@ function InitializeUnBotFrame()
 
 	SetUnBotScale();
 
-	DisplayInfomation("Bot controller initialized");
+	DisplayInfomation(L["Bot controller initialized"]);
 end
 
 local function GetCommandTypeTextByType(typeIndex)
@@ -138,21 +139,21 @@ end
 function CommandButton_OnEnter(self,index,btnType)
 	GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT");
 	GameTooltip:AddLine(UnBotTooltipTitle[index],1,0,0,1);
-	GameTooltip:AddDoubleLine("Target:",GetCommandTypeTextByType(UnBotCommandType[index]),0,0,1,1,0,1);
+	GameTooltip:AddDoubleLine(L["Target:"],GetCommandTypeTextByType(UnBotCommandType[index]),0,0,1,1,0,1);
 	GameTooltip:AddLine(UnBotTooltipHelp[index],0,1,0,1);
 	GameTooltip:AddLine(" ",1,1,1,1);
 	if (self.groupIndex > 0) then
-		GameTooltip:AddDoubleLine("Uses:",UnBotExecuteCommand[index],0,0.85,0.85,0,0.85,0.85);
+		GameTooltip:AddDoubleLine(L["Uses:"],UnBotExecuteCommand[index],0,0.85,0.85,0,0.85,0.85);
 	end
-	GameTooltip:AddLine("LMB: Use",0.65,0.55,0,1);
+	GameTooltip:AddLine(L["LMB: Use"],0.65,0.55,0,1);
 	if (self.groupIndex > 0) then
 		if (btnType == 1) then
-			GameTooltip:AddLine("RMB: Toggle button group",0.65,0.55,0,1);
+			GameTooltip:AddLine(L["RMB: Toggle button group"],0.65,0.55,0,1);
 		elseif (btnType == 2) then
-			GameTooltip:AddLine("RMB: Set shortcut",0.65,0.55,0,1);
+			GameTooltip:AddLine(L["RMB: Set shortcut"],0.65,0.55,0,1);
 		end
 	else
-		GameTooltip:AddLine("RMB: Hide the bar",0.65,0.55,0,1);
+		GameTooltip:AddLine(L["RMB: Hide the bar"],0.65,0.55,0,1);
 	end
 	GameTooltip:AddDoubleLine("ID:",tostring(index),0,0,1,1,0,1);
 	GameTooltip:AddTexture(GetIconPathByIndex(UnBotIconFiles[index]));
@@ -336,7 +337,7 @@ function UnBotDisableAllFrameFlushButton()
 end
 
 function CaseNormalWhisperMsg(name, info)
-	local i1, i2 = string.find(info, "Select reward");
+	local i1, i2 = string.find(info, L["Select reward"]);
 	if (i1 ~= nil and i2 ~= nil) then
 		RecvQuestReward(name, info);
 	end
@@ -349,7 +350,7 @@ function SubCommandButton_OnLeftClick(index)
 		end
 	end
 	if (UnBotCommandType[index] == nil) then
-		DisplayInfomation("Could not find order "..tostring(index));
+		DisplayInfomation(L["Could not find order "]..tostring(index));
 		return;
 	end
 	local realize = getglobal("UnBotCommandRealize");
@@ -363,11 +364,11 @@ function SubCommandButton_OnLeftClick(index)
 			local isParty = UnitInParty("target");
 			local isRaid = UnitInRaid("target");
 			if (targetName == nil or targetName == "") then
-				DisplayInfomation("You have no target.");
+				DisplayInfomation(L["You have no target."]);
 				return;
 			end
 			if (isParty == nil and isRaid == nil) then
-				DisplayInfomation("The target is not in your group.");
+				DisplayInfomation(L["The target is not in your group."]);
 				return;
 			end
 			-- if (not IsRealPartyLeader()) then
@@ -393,7 +394,7 @@ function SubCommandButton_OnLeftClick(index)
 			SendChatMessage(UnBotExecuteCommand[index], "PARTY");
 			-- end
 		else
-			DisplayInfomation("You click button index "..tostring(index)..", execute "..UnBotExecuteCommand[index]);
+			DisplayInfomation(L["You click button index "]..tostring(index)..L[", execute "]..UnBotExecuteCommand[index]);
 		end
 	end
 end

@@ -1,4 +1,5 @@
-﻿
+﻿local _, L = ...;
+
 function RecvQuestReward(name, info)
 	local i1, i2 = string.find(info, "Hitem");
 	if (i1 == nil or i2 == nil) then
@@ -34,9 +35,9 @@ function ShowQuestReward(name, items)
 	qrFrame.showTick = GetTime();
 	local qrLabel = _G[qrFrame:GetName().."TitleLabel"];
 	if (qrLabel ~= nil) then
-		qrLabel:SetText(name.." |cffcccc00Select reward for completing quests|r"); -- Needs correction
+		qrLabel:SetText(name.." |cffcccc00"..L["Select reward for completing quests"].."|r"); -- Needs correction
 	else
-		DisplayInfomation("Complete quest reward panelLabel "..qrFrame:GetName().."TitleLabel Not found, failed to set player name "..name); -- Needs correction
+		DisplayInfomation(L["Complete quest reward panelLabel "]..qrFrame:GetName()..L["TitleLabel Not found, failed to set player name "]..name); -- Needs correction
 	end
 	local qrBar = _G[qrFrame:GetName().."TickBar"];
 	if (qrBar ~= nil) then
@@ -84,7 +85,7 @@ function UnBotShowQuestRewardTips(self, item)
 		else
 			GameTooltip:AddLine(item[5],1,0,0,1);
 			GameTooltip:AddLine(" ",1,1,1,1);
-			GameTooltip:AddLine("This item has not appeared on your client. You need to wait for a moment to query the server and then move the mouse to this item again.",1,0,0,1); -- Needs correction
+			GameTooltip:AddLine(L["ITEM_NOT_ON_CLIENT_REFRESH"],1,0,0,1); -- Needs correction
 		end
 	else
 		GameTooltip:SetHyperlink("item:"..tostring(item[1])..":0:0:0:0:0:0:0");
@@ -92,7 +93,7 @@ function UnBotShowQuestRewardTips(self, item)
 
 	if (self.item[2] == false) then
 		GameTooltip:AddLine(" ",1,1,1,1);
-		GameTooltip:AddLine("Left mouse button: Select "..item[3].." as the quest reward",1,0,0,1);
+		GameTooltip:AddLine(L["Left mouse button: Select "]..item[3]..L[" as the quest reward"],1,0,0,1);
 	end
 	GameTooltip:Show();
 end

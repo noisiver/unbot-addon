@@ -1,6 +1,5 @@
 
---local _, YssBossLoot = ...
-local YssBossLoot = YssBossLoot
+local _, YssBossLoot = ...
 
 YssBossLoot.frame = CreateFrame("frame")
 YssBossLoot.frame:SetScript("OnEvent", function(self, event, ...) if YssBossLoot[event] then return YssBossLoot[event](YssBossLoot, event, ...) end end)
@@ -69,7 +68,7 @@ local LootFrame = YssBossLoot.LootFrame
 			LootFrame.LootHide:Play()
 		end)
 	LootFrame.BossName = LootFrame:CreateFontString(nil, "OVERLAY")
-		LootFrame.BossName:SetFont(STANDARD_TEXT_FONT, 30, "OUTLINE")
+		LootFrame.BossName:SetFont([[Fonts\FRIZQT__.TTF]], 30, "OUTLINE")
 		LootFrame.BossName:SetPoint("TOP", LootFrame, "TOP",0,-10)
 		LootFrame.BossName:SetText("Boss Name Here")
 	FilterButton = CreateFrame('Button',nil,LootFrame,'UIPanelButtonTemplate')
@@ -253,7 +252,7 @@ local QueryProgressBar = CreateFrame("StatusBar", nil, LootFrame)
 		LootFrame.wowhead:SetNormalTexture("Interface\\AddOns\\YssBossLoot\\Art\\wowhead_logo")
 		LootFrame.wowhead:SetHighlightTexture("Interface\\AddOns\\YssBossLoot\\Art\\wowhead_logo_hover")
 		LootFrame.wowhead:GetHighlightTexture():SetBlendMode("BLEND")
-		--LootFrame.wowhead:SetPoint("BOTTOMRIGHT", -10, -10)
+		LootFrame.wowhead:SetPoint("BOTTOMRIGHT", -10, -10)
 
 		StaticPopupDialogs["YssBossLoot_WoWHead_DIALOG"] = {
 			text = "YssBossLoot (C) 2009 by Yssaril\n\nThis add-on provides you with basic boss loot information. For the more information, be sure to visit http://www.wowhead.com",
@@ -266,10 +265,9 @@ local QueryProgressBar = CreateFrame("StatusBar", nil, LootFrame)
 		}
 
 		LootFrame.wowhead:SetScript("OnClick", function()
-		-- Terry@bf
-		--	local popup = StaticPopup_Show("YssBossLoot_WoWHead_DIALOG")
-		--	popup:SetFrameStrata("TOOLTIP")
-		--	popup:SetParent(LootFrame)
+			local popup = StaticPopup_Show("YssBossLoot_WoWHead_DIALOG")
+			popup:SetFrameStrata("TOOLTIP")
+			popup:SetParent(LootFrame)
 		end)
 
 function YssBossLoot:ADDON_LOADED(event, addon)
@@ -412,7 +410,7 @@ local function CreateLootFrame(rightAlign)
 		widget.LootText:SetPoint("TOPRIGHT", widget.frame, "TOPRIGHT")
 		widget.LootText:SetHeight(24)
 		widget.LootText.normalfont = widget.LootText:CreateFontString(nil, "OVERLAY")
-			widget.LootText.normalfont:SetFont(STANDARD_TEXT_FONT, 20, "OUTLINE")
+			widget.LootText.normalfont:SetFont([[Fonts\FRIZQT__.TTF]], 20, "OUTLINE")
 		widget.LootText:SetFontString(widget.LootText.normalfont)
 		widget.LootText:SetHighlightTexture([[Interface\Buttons\UI-Common-MouseHilight]], 'ADD')
 		widget.LootText:SetText("LootType here")
@@ -644,33 +642,24 @@ function YssBossLoot:UpdateLootFrame(keepLayout)
 	local currentloot, currentlootDesc, currentsortedloot, boss
 	local f = LootFrame
 	if f.MultiBoss then
-		if #(f.MultiBoss) <= 1 then
-			navRightLoot:Hide()
-			navLeftLoot:Hide()
+		navRightLoot:Show()
+		navLeftLoot:Show()
+		if f.subBoss == 1 then
+			navRightLoot:Enable()
+			navLeftLoot:Disable()
+		elseif f.subBoss == #f.MultiBoss then
+			navRightLoot:Disable()
+			navLeftLoot:Enable()
 		else
-			navRightLoot:Show()
-			navLeftLoot:Show()
-			if f.subBoss == 1 then
-				navRightLoot:Enable()
-				navLeftLoot:Disable()
-			elseif f.subBoss == #f.MultiBoss then
-				navRightLoot:Disable()
-				navLeftLoot:Enable()
-			else
-				navRightLoot:Enable()
-				navLeftLoot:Enable()
-			end
-			
+			navRightLoot:Enable()
+			navLeftLoot:Enable()
 		end
-		local bn = BB[f.MultiBoss[f.subBoss]] or f.MultiBoss[f.subBoss];
-		f.BossName:SetText(bn)
+		f.BossName:SetText(f.MultiBoss[f.subBoss])
 		boss = f.MultiBoss[f.subBoss]
-		
 	else
 		navRightLoot:Hide()
 		navLeftLoot:Hide()
-		local bn = BB[f.Boss] or f.Boss;
-		f.BossName:SetText(bn)
+		f.BossName:SetText(f.Boss)
 		boss = f.Boss
 	end
 
@@ -876,9 +865,8 @@ local function setupBossAnimation(frame)
 			local newSize = YssBossLoot.db.profile.bossframesize + (YssBossLoot.db.profile.bossframesize * progress)
 			frame:SetWidth(newSize)
 			frame:SetHeight(newSize)
-			--terry@bf
---			frame.SkullBG:SetWidth(newSize*1.5)
---			frame.SkullBG:SetHeight(newSize*2)
+			frame.SkullBG:SetWidth(newSize*1.5)
+			frame.SkullBG:SetHeight(newSize*2)
 			frame.Skull:SetWidth(newSize/1.5)
 			frame.Skull:SetHeight(newSize/1.5)
 			local fontName, fontHeight, fontFlags = frame.name:GetFont()
@@ -888,9 +876,8 @@ local function setupBossAnimation(frame)
 			local newSize = YssBossLoot.db.profile.bossframesize * 2
 			frame:SetWidth(newSize)
 			frame:SetHeight(newSize)
-			--Terry@bf
---			frame.SkullBG:SetWidth(newSize*1.5)
---			frame.SkullBG:SetHeight(newSize*2)
+			frame.SkullBG:SetWidth(newSize*1.5)
+			frame.SkullBG:SetHeight(newSize*2)
 			frame.Skull:SetWidth(newSize/1.5)
 			frame.Skull:SetHeight(newSize/1.5)
 			local fontName, fontHeight, fontFlags = frame.name:GetFont()
@@ -909,9 +896,8 @@ local function setupBossAnimation(frame)
 			local newSize = YssBossLoot.db.profile.bossframesize + (YssBossLoot.db.profile.bossframesize * (1 - progress))
 			frame:SetWidth(newSize)
 			frame:SetHeight(newSize)
-				--Terry@bf
---			frame.SkullBG:SetWidth(newSize*1.5)
---			frame.SkullBG:SetHeight(newSize*2)
+			frame.SkullBG:SetWidth(newSize*1.5)
+			frame.SkullBG:SetHeight(newSize*2)
 			frame.Skull:SetWidth(newSize/1.5)
 			frame.Skull:SetHeight(newSize/1.5)
 			local fontName, fontHeight, fontFlags = frame.name:GetFont()
@@ -920,9 +906,8 @@ local function setupBossAnimation(frame)
 		reduce:SetScript("OnFinished", function(self)
 			frame:SetWidth(YssBossLoot.db.profile.bossframesize)
 			frame:SetHeight(YssBossLoot.db.profile.bossframesize)
-			--terry@bf
---			frame.SkullBG:SetWidth(YssBossLoot.db.profile.bossframesize*1.5)
---			frame.SkullBG:SetHeight(YssBossLoot.db.profile.bossframesize*2)
+			frame.SkullBG:SetWidth(YssBossLoot.db.profile.bossframesize*1.5)
+			frame.SkullBG:SetHeight(YssBossLoot.db.profile.bossframesize*2)
 			frame.Skull:SetWidth(YssBossLoot.db.profile.bossframesize/1.5)
 			frame.Skull:SetHeight(YssBossLoot.db.profile.bossframesize/1.5)
 			local fontName, fontHeight, fontFlags = frame.name:GetFont()
@@ -944,8 +929,7 @@ local function setupBossAnimation(frame)
 		self.reduceGroup.reduce:Play()
 	end)
 
---Terry@bf
---[[	local rotateBGGroup = frame.SkullBG:CreateAnimationGroup()
+	local rotateBGGroup = frame.SkullBG:CreateAnimationGroup()
 	local rotate = rotateBGGroup:CreateAnimation("Animation")
 		rotate:SetDuration(5)
 		rotate:SetOrder(1)
@@ -960,7 +944,7 @@ local function setupBossAnimation(frame)
 		end)
 	rotateBGGroup.rotate = rotate
 	rotateBGGroup:SetLooping("REPEAT")
-	frame.rotateBGGroup = rotateBGGroup]]
+	frame.rotateBGGroup = rotateBGGroup
 end
 
 local function getBossFrame(parent)
@@ -976,14 +960,13 @@ local function getBossFrame(parent)
 		frame:SetHeight(YssBossLoot.db.profile.bossframesize)
 		frame:SetToplevel(true)
 		frame:SetCreature(0)
-		--Terry@bf
-	--[[	local SkullBG = frame:CreateTexture(nil, 'BACKGROUND')
+		local SkullBG = frame:CreateTexture(nil, 'BACKGROUND')
 			SkullBG:SetPoint("CENTER")
 			SkullBG:SetWidth(YssBossLoot.db.profile.bossframesize*1.5)
 			SkullBG:SetHeight(YssBossLoot.db.profile.bossframesize*2)
 			SkullBG:SetTexture("Interface\\Addons\\YssBossLoot\\Art\\SkullBG")
 			SkullBG:SetAlpha(.75)
-		frame.SkullBG = SkullBG]]
+		frame.SkullBG = SkullBG
 
 		local name = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 			local font, size = name:GetFont()
@@ -1011,12 +994,11 @@ local function getBossFrame(parent)
 	frame:SetFrameLevel(parent:GetFrameLevel()+10)
 	frame.onupdate = 0
 	if YssBossLoot.db.profile.portalBackdrop then
-	--Terry@bf
-	--	frame.SkullBG:Show()
-	--	frame.rotateBGGroup:Play()
+		frame.SkullBG:Show()
+		frame.rotateBGGroup:Play()
 	else
-	--	frame.SkullBG:Hide()
-	--	frame.rotateBGGroup:Stop()
+		frame.SkullBG:Hide()
+		frame.rotateBGGroup:Stop()
 	end
 	if YssBossLoot.db.profile.threeDskull then
 		frame:SetCreature(YssBossLoot.cid)
@@ -1033,14 +1015,13 @@ end
 
 local function returnBossFrame(frame)
 	frame.name:SetText("Boss Name Here")
-	--Terry@bf
---	frame.rotateBGGroup:Stop()
+	frame.rotateBGGroup:Stop()
 	frame:Hide()
 	frame:ClearAllPoints()
 	frame:SetWidth(YssBossLoot.db.profile.bossframesize)
 	frame:SetHeight(YssBossLoot.db.profile.bossframesize)
---	frame.SkullBG:SetWidth(YssBossLoot.db.profile.bossframesize*1.5)
---	frame.SkullBG:SetHeight(YssBossLoot.db.profile.bossframesize*2)
+	frame.SkullBG:SetWidth(YssBossLoot.db.profile.bossframesize*1.5)
+	frame.SkullBG:SetHeight(YssBossLoot.db.profile.bossframesize*2)
 	frame.Skull:SetWidth(YssBossLoot.db.profile.bossframesize/1.5)
 	frame.Skull:SetHeight(YssBossLoot.db.profile.bossframesize/1.5)
 	local fontName, fontHeight, fontFlags = frame.name:GetFont()
@@ -1062,7 +1043,7 @@ local function getBossFrameToggle(parent, MapType, Map, level)
 		frame:SetToplevel(true)
 		frame.text = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 		frame.text:SetPoint("LEFT", frame, "RIGHT", 0, 1)
-		frame.text:SetText(L["Show Boss Frame"])
+		frame.text:SetText("Show Boss Frames")
 		frame:SetScript("OnCLick", function(self)
 			YssBossLoot.db.profile.displayBosses = self:GetChecked()
 			YssBossLoot:AddBosses(self:GetParent(parent), self.MapType, self.Map, self.level)
@@ -1108,9 +1089,8 @@ function YssBossLoot:RefreshBossFrames()
 				frame:Hide()
 				frame:SetWidth(self.db.profile.bossframesize)
 				frame:SetHeight(self.db.profile.bossframesize)
-				--Terry@bf
-			--	frame.SkullBG:SetWidth(self.db.profile.bossframesize*1.5)
-			--	frame.SkullBG:SetHeight(self.db.profile.bossframesize*2)
+				frame.SkullBG:SetWidth(self.db.profile.bossframesize*1.5)
+				frame.SkullBG:SetHeight(self.db.profile.bossframesize*2)
 				frame.Skull:SetWidth(self.db.profile.bossframesize/1.5)
 				frame.Skull:SetHeight(self.db.profile.bossframesize/1.5)
 				local fontName, fontHeight, fontFlags = frame.name:GetFont()
@@ -1125,12 +1105,11 @@ function YssBossLoot:RefreshBossFrames()
 					self:SetTexture(frame.Skull, self.skulls.info[self.db.profile.twoDskull])
 				end
 				if self.db.profile.portalBackdrop then
-				--Terry@bf
-		--			frame.SkullBG:Show()
-		--			frame.rotateBGGroup:Play()
+					frame.SkullBG:Show()
+					frame.rotateBGGroup:Play()
 				else
-		--			frame.SkullBG:Hide()
-		--			frame.rotateBGGroup:Stop()
+					frame.SkullBG:Hide()
+					frame.rotateBGGroup:Stop()
 				end
 				frame:Show()
 			end
@@ -1171,7 +1150,6 @@ function YssBossLoot:AddBosses(parent, MapType, Map, level)
 				end
 			end
 		end
-		--Terry@bf
 		if lootdata:HasLoot(MapType, Map, "Non Boss Drops") then
 			local frame = getBossFrame(parent)
 			frame:SetPoint("RIGHT", parent, "RIGHT", self.db.profile.bossframesize*-1.5, 0)

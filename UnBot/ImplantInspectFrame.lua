@@ -1,4 +1,5 @@
-﻿
+﻿local _, L = ...;
+
 function UnBotCheckOffHand(dstFrame, targetName)
 	local slot16Linnk = GetInventoryItemLink(InspectFrame.unit, 16);
 	local slot17Linnk = GetInventoryItemLink(InspectFrame.unit, 17);
@@ -90,7 +91,7 @@ function UnBotInitInspectFrame()
 		EquipInventoryFrame:SetPoint("CENTER", ipdf, "CENTER", -10, 0);
 		EquipInventoryFrame:Hide();
 	end
-	DisplayInfomation("Embedded the module into the character window");
+	DisplayInfomation(L["Embedded the module into the character window"]);
 end
 
 function UnBotInspectFrameCanOperator()
@@ -155,7 +156,7 @@ function UnBotInspectPaperDollFrame_OnShow(...)
 		dstFrame.ubHelpText = dstFrame:CreateFontString(dstFrame:GetName().."UnBotHelp","ARTWORK");
 		dstFrame.ubHelpText:SetFont("Fonts\\FRIZQT__.TTF",12);
 		dstFrame.ubHelpText:SetTextColor(0,0.8,0.8,1);
-		dstFrame.ubHelpText:SetText("In the equipment slot: Left mouse button to change the equipment and right mouse button to remove the equipment.");
+		dstFrame.ubHelpText:SetText(L["In the equipment slot: Left mouse button to change the equipment and right mouse button to remove the equipment."]);
 		dstFrame.ubHelpText:SetPoint("TOP",dstFrame,"TOP",15,-58);
 		dstFrame.ubHelpText:SetShadowColor(0,0,0);
 		dstFrame.ubHelpText:SetShadowOffset(1,-1);

@@ -1,5 +1,4 @@
 local AceGUI = LibStub("AceGUI-3.0")
-local L = LibStub("AceLocale-3.0"):GetLocale("YssBossLoot", true)
 
 --------------------------
 -- Button		        --
@@ -50,7 +49,7 @@ do
 			_, _, _, hex = GetItemQualityColor(itemRarity or 1)
 			hex = hex.."%s"
 			else
-			hex = L['|cffff2222%s not cached!']
+			hex = '|cffff2222%s not cached!'
 			itemName = item
 			--need to add a way to query the info
 		end

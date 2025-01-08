@@ -1,4 +1,5 @@
-﻿
+﻿local _, L = ...;
+
 function UnBotGetOptionByType(classType)
 	for i=1,#(OnlineFrame.options) do
 		local opt = OnlineFrame.options[i];
@@ -48,7 +49,7 @@ function UnBotShowOnlineFrame()
 	if (OnlineFrame.scrollFrame == nil) then
 		OnlineFrame.scrollFrame = _G["OnlineFrameListBox"];
 		if (OnlineFrame.scrollFrame == nil) then
-			DisplayInfomation("Failed to open the Online window.");
+			DisplayInfomation(L["Failed to open the Online window."]);
 			return;
 		end
 	end
